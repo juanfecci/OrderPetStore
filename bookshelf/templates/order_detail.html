@@ -1,0 +1,45 @@
+<!doctype html>
+<style>
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+</style>
+<html>
+    <body>
+        <title>Order Detail</title>
+        <h1> Order {{result['id']}}</h1>
+        <h3>Payment</h3>
+<table id="payment" style="width:100%"><tbody><tr>
+            <th>date</th>
+            <th>total</th>
+            <th>detail</th>
+        </tr><tr>
+             <td>{{result["paymentDate"]}}</td>
+             <td>{{result["paymentTotal"]}}</td>
+             <td>{{result["paymentDetail"]}}</td>
+        </tr>
+    </tbody></table>
+    <br>
+    <h3>Items</h3>
+<table id="items" style="width:100%"><tbody><tr>
+            <th>item id</th>
+            <th>name</th>
+            <th>quantity</th>
+            <th>price</th>
+            <th>description</th>
+            <th>total</th>
+        </tr><tr>
+            {% for row in result['items'] %}
+             <td>{{row['id']}}</td>
+             <td>{{row['name']}}</td>
+             <td>{{row['price']}}</td>
+             <td>{{row['quantity']}}</td>
+             <td>{{row['description']}}</td>
+             <td>{{row['price'] * row['quantity']}}</td>
+        </tr>
+        {% endfor %}
+    </tbody></table>
+    </body>
+</html>

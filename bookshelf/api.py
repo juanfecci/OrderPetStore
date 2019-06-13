@@ -26,17 +26,3 @@ def listByUser(id):
 @api.route('/items/<id>', methods=['GET',])
 def listItems(id):
     return get_model().listItems(id)
-
-@api.route('/payment/<id>', methods=['GET',])
-def paymentGet(id):
-    return get_model().paymentGet(id)
-
-@api.route('/payment/update/<id>', methods=['PATCH',])
-def paymentUpdate(id):
-    if request.method == "PATCH":
-        content = request.get_json()
-        return get_model().paymentUpdate(id, content)
-
-@api.route('/address/<id>', methods=['GET',])
-def addressGet(id):
-    return get_model().addressGet(id)

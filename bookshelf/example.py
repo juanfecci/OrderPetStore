@@ -52,12 +52,8 @@ def payment():
         for item in cont:
             result["items"].append(item)
 
-        result["addressCountry"] = "Country"
-        result["addressRegion"] = "Region"
-        result["addressCity"] = "City"
-        result["addressCommune"] = "Commune"
-        result["addressStreet"] = "Street"
-        result["addressNumber"] = "Number"
+        result["paymentDetail"] = "Payment Detail"
+        result["address"] = "Address"
 
         cont[:] = []
 
@@ -91,5 +87,7 @@ def order():
         orderId = str(details['oid'])
         result = get_model().get(orderId)
         result = json.loads(result)
+        for i in range(len(result["items"])):
+            result["items"][i]["total"] = int(result["items"][i]['price']) * int(result["items"][i]['quantity'])
         return render_template('order_detail.html', result = result)
     return render_template('index.html')
